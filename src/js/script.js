@@ -76,6 +76,7 @@ function error(id) {
 }
 
 function shuffleBlocks() {
+    hideElements();
     let list = ["b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9", "b10", "b11", "b12", "b13", "b14", "b15"];
     [emptyX, emptyY] = [4, 4];
     sorrend = [];
@@ -96,7 +97,7 @@ function shuffleBlocks() {
         let current = element.substring(1, element.length);
         sorrend.push(current);
 
-        htmlstring += `<div id="b${counter}" onclick="moveBlock('b${counter}')" class="${current}">${current}</div>`;
+        htmlstring += `<div style="opacity: 0" id="b${counter}" onclick="moveBlock('b${counter}')" class="${current}">${current}</div>`;
         
         counter++;
     });
@@ -105,7 +106,9 @@ function shuffleBlocks() {
     // console.log(htmlstring);
 
     document.getElementById("game").innerHTML = htmlstring;
-    sorrend.push('0')
+    sorrend.push('0');
+
+    showElements();
     // console.log(sorrend);
 }
 
@@ -126,4 +129,24 @@ function swapElements(array, index1, index2) {
 function endGame() {
     document.getElementById("game").style.display = "none";
     document.getElementById("end").style.display = "block";
+}
+
+function hideElements() {
+    let elements = document.querySelectorAll("#game > div");
+
+    elements.forEach(elem => {
+        elem.style.opacity = "0";
+    });
+}
+
+function showElements() {
+    let elements = document.querySelectorAll("#game > div");
+
+    counter = 1;
+    elements.forEach(elem => {
+        setTimeout(() => {
+            elem.style.opacity = "1";
+        }, counter * 250);
+        counter++;
+    });
 }
