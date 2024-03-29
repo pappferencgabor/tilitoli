@@ -4,6 +4,9 @@ let helyes = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13
 let lepesek = 0;
 let lepeselem = document.getElementById("lepesszam");
 
+let audioTick = document.getElementById("tick");
+audioTick.volume = 0.5;
+
 function moveBlock(id) {
     let elem = document.getElementById(id);
     let style = window.getComputedStyle(elem);
@@ -32,6 +35,7 @@ function moveBlock(id) {
     // console.log(helyek);
 
     lepesek++;
+    audioTick.play();
     lepeselem.innerHTML = lepesek;
     if (helyek.includes(szabad)) {
         // console.log(true);
@@ -146,7 +150,19 @@ function showElements() {
     elements.forEach(elem => {
         setTimeout(() => {
             elem.style.opacity = "1";
+            audioTick.play();
         }, counter * 250);
         counter++;
     });
+}
+
+function changeSounds() {
+    if (audioTick.volume == 0.5) {
+        document.getElementById("soundicon").setAttribute("src", "src/img/mute.png");
+        audioTick.volume = 0.0;
+    }
+    else {
+        document.getElementById("soundicon").setAttribute("src", "src/img/volume.png");
+        audioTick.volume = 0.5;
+    }
 }

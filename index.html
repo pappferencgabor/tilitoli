@@ -9,6 +9,15 @@
 </head>
 <body>
     <div id="content">
+        <div id="settings">
+            <div id="sounds">
+                <p>Hangok:</p>
+                <img src="src/img/volume.png" onclick="changeSounds()" id="soundicon">
+            </div>
+        </div>
+
+        <hr style="border: 1px solid black;">
+
         <div id="info">
             <h3>Lépések száma: <span id="lepesszam">0</span></h3>
             <button type="button" onclick="shuffleBlocks()" id="keveres">Indítás</button>
@@ -37,6 +46,10 @@
             <h2>Sikeresen kiraktad!</h2>
             <h3>Nyomj a fenti gombra az újrakezdéshez!</h3>
         </div>
+
+        <audio id="tick">
+            <source src="src/sound/tick2.mp3" type="audio/mp3">
+        </audio>
     </div>
 
     <script src="src/js/script.js"></script>

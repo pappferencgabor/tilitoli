@@ -90,3 +90,15 @@ body {
 #game > #b14 { grid-column: 2 / span 1; grid-row: 4 / span 1; }
 #game > #b15 { grid-column: 3 / span 1; grid-row: 4 / span 1; }
 #game > #b0  { grid-column: 4 / span 1; grid-row: 4 / span 1; }
+
+#sounds {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#sounds img {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}
