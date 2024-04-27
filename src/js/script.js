@@ -7,6 +7,11 @@ let lepeselem = document.getElementById("lepesszam");
 let audioTick = document.getElementById("tick");
 audioTick.volume = 0.5;
 
+let rekord = parseInt(getCookie("rekord"));
+if (rekord != Number.MAX_SAFE_INTEGER) {
+    showRecord(rekord);
+}
+
 function moveBlock(id) {
     let elem = document.getElementById(id);
     let style = window.getComputedStyle(elem);
@@ -133,6 +138,11 @@ function swapElements(array, index1, index2) {
 function endGame() {
     document.getElementById("game").style.display = "none";
     document.getElementById("end").style.display = "block";
+
+    if (lepesek < rekord) {
+        setCookie("rekord", lepesek);
+        showRecord(lepesek);
+    }
 }
 
 function hideElements() {
@@ -164,5 +174,31 @@ function changeSounds() {
     else {
         document.getElementById("soundicon").setAttribute("src", "src/img/volume.png");
         audioTick.volume = 0.5;
+    }
+}
+
+function showRecord(what) {
+    document.getElementById("rekord").innerHTML = what;
+}
+
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function getCookie(param) {
+    var cookie = document.cookie;
+
+    if (cookie.startsWith(param)) {
+        return parseFloat(cookie.split("=")[1])
+    }
+    else {
+        return Number.MAX_SAFE_INTEGER
     }
 }
